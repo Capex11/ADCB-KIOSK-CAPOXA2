@@ -32,6 +32,13 @@ document.addEventListener('DOMContentLoaded', () => {
     6: { text: "The talabat ADCB Credit Card<br>fits your lifestyle the best.", image: "assets/cards/Talabat.png" }
   };
 
+  // Preload card images to prevent flashing on result screen
+  Object.values(categoryToCardMap).forEach(card => {
+    const img = new Image();
+    img.src = card.image;
+  });
+
+
   // State
   let currentRanks = new Array(questions.length).fill(null);
   let selectedQuestionIndex = 0; // Highlight the first question by default
