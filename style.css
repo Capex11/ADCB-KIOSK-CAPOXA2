@@ -1,0 +1,295 @@
+:root {
+  --color-dark: #333F48;
+  --color-light: #EBEBEB;
+  --color-gray: #BFBFBF;
+  --color-white: #FFFFFF;
+  --color-red: #D22630;
+  --font-main: 'Inter', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body, html {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  font-family: var(--font-main);
+  background-color: var(--color-light);
+  color: var(--color-dark);
+}
+
+.kiosk-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* SCREEN TRANSITIONS */
+.screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-image: url('assets/bg1.png');
+  background-size: cover;
+  background-position: center;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s;
+}
+
+.screen.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center content vertically on screens 1 and 3 */
+  align-items: center;
+  padding: 2vh 5vw;
+  text-align: center;
+  overflow-y: hidden; /* Disable scrolling as requested */
+  width: 100%;
+  min-height: 0; /* CRITICAL: Allows flex child to scroll instead of overflowing body */
+}
+
+.actions {
+  padding: 2vh 5vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* TYPOGRAPHY */
+.main-title {
+  font-size: 5vh;
+  margin: 2vh 0;
+  line-height: 1.1;
+  letter-spacing: -0.0195em;
+}
+
+.question-title {
+  font-size: 3.8vh;
+  margin: 1.2vh 0;
+}
+
+.result-title {
+  font-size: 4vh;
+  margin: 2vh 0;
+  line-height: 1.1;
+}
+
+.subtitle, .qr-subtitle {
+  font-size: 2.4vh;
+  margin: 1.2vh 0;
+  opacity: 0.8;
+}
+
+/* IMAGES */
+img {
+  max-width: 100%;
+  object-fit: contain;
+}
+.hero-image { 
+  position: relative;
+  z-index: 2;
+  max-height: 25vh; 
+  margin-bottom: -5vh; /* Pull the image down into the box */
+}
+.result-top-image { max-height: 12vh; margin-bottom: 2vh; }
+.result-card-image { max-height: 25vh; margin-bottom: 2vh; }
+.qr-image { max-height: 15vh; margin-bottom: 1vh; }
+
+/* LAYOUT FIXES FOR SCREEN 1 */
+.welcome-panel {
+  position: relative;
+  z-index: 1;
+  padding: 6vmin 5vmin 0 5vmin; /* 0 bottom padding so button can overlap edge */
+  width: auto !important; /* Hug the text instead of filling screen */
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.welcome-panel .actions {
+  padding: 3vmin 0 0 0;
+  margin-bottom: -4.5vmin; /* Pull the 9vmin button down so it sticks exactly halfway out */
+}
+
+/* LAYOUT FIXES FOR SCREEN 2 */
+#screen-questions .content {
+  justify-content: flex-start; /* Ensure title isn't cut off at top on screen 2 */
+  padding-top: 2vh;
+  width: 90vw;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+#screen-questions .question-title, 
+#screen-questions .subtitle {
+  width: 100%;
+  text-align: center;
+}
+
+/* GLASS PANEL (Screen 2) */
+.glass-panel {
+  background-color: rgba(235, 235, 235, 0.85);
+  box-shadow: inset 0 0 16px rgba(255, 255, 255, 0.6);
+  padding: 1.8vh 2.5vw;
+  border-radius: 20px;
+  width: 100%;
+  margin-top: 1.5vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.number-picker {
+  display: flex;
+  justify-content: center;
+  gap: 3vw;
+  width: 100%;
+  padding: 1.5vh 0 0 0;
+  margin-top: 1.2vh;
+  border-top: 2px solid rgba(0,0,0,0.1);
+}
+
+.num-btn {
+  width: 5.2vh;
+  height: 5.2vh;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background-color: #e3000f;
+  color: #ffffff;
+  border: none;
+  font-size: 2.6vh;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.num-btn:active {
+  transform: scale(0.9);
+}
+
+.num-btn.used {
+  background-color: #cfd0d2;
+  color: #ffffff;
+}
+
+/* LIST */
+.ranking-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.ranking-item {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 3vw;
+  text-align: left;
+  padding: 0.6vh 1.2vw;
+  font-size: 2.3vh;
+  cursor: pointer;
+  border: 2px solid transparent; /* Always have 2px borders to prevent jumping */
+  border-bottom-color: rgba(0,0,0,0.05); /* Grey bottom border by default */
+  border-radius: 10px;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.ranking-item:last-child {
+  border-bottom-color: transparent; /* Remove grey border on the last item */
+}
+
+.ranking-item.selected {
+  background-color: rgba(210, 38, 48, 0.1);
+  border-color: var(--color-red); /* Overrides all transparent borders, including the last-child bottom border! */
+}
+
+.rank-circle {
+  width: 5.2vh;
+  height: 5.2vh;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background-color: #cfd0d2; /* Solid grey circle matching Figma */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 2.6vh;
+  color: var(--color-dark);
+}
+
+.rank-circle.ranked {
+  width: 5.2vh;
+  height: 5.2vh;
+  background-color: #e3000f;
+  color: #ffffff;
+  border-radius: 50%;
+  font-size: 2.6vh;
+}
+
+/* CIRCLE BUTTONS */
+.circle-btn {
+  position: relative;
+  width: 9vmin; /* Shrunk slightly and using vmin to scale with window */
+  height: 9vmin;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  transition: transform 0.2s;
+}
+
+.circle-btn.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.circle-btn:active {
+  transform: scale(0.95);
+}
+
+.circle-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 1;
+}
+
+.circle-arrow {
+  position: relative;
+  width: 25%;
+  object-fit: contain;
+  z-index: 2;
+}
+
+/* SECONDARY BUTTON */
+.secondary-btn {
+  background-color: transparent;
+  color: var(--color-red);
+  border: 3px solid var(--color-red);
+  font-size: 3vmin;
+  padding: 1.5vmin 3vmin;
+  border-radius: 10px;
+  cursor: pointer;
+}

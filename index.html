@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ADCB Interactive Kiosk</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="kiosk-container">
+
+    <!-- SCREEN 1: WELCOME -->
+    <section id="screen-welcome" class="screen active">
+      <div class="content welcome-content">
+        <img src="assets/elements.png" alt="Decor" class="hero-image">
+        <div class="welcome-panel glass-panel">
+          <h1 class="main-title">Your lifestyle.<br>Your ADCB card.<br>Perfectly matched.</h1>
+          <p class="subtitle">Answer a question and discover the ADCB Credit Card that<br>suits you the best.</p>
+          <div class="actions">
+            <div id="btn-start" class="circle-btn">
+                <img src="assets/btn-circle.png" alt="Start" class="circle-bg">
+                <img src="assets/btn-arrow.png" alt="Arrow" class="circle-arrow">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN 2: QUESTIONNAIRE -->
+    <section id="screen-questions" class="screen hidden">
+      <div class="content">
+        <h1 class="question-title">What rewards make you feel like you are winning every time you spend?</h1>
+        <p class="subtitle">Tap the number below to rank each reward as per preference from 1 to 7.</p>
+        
+        <div class="glass-panel">
+            <div class="ranking-list">
+              <!-- Generated via Javascript -->
+            </div>
+            <div class="number-picker" id="number-picker">
+              <!-- Generated via Javascript -->
+            </div>
+        </div>
+      </div>
+      <div class="actions">
+        <div id="btn-submit" class="circle-btn disabled">
+            <img src="assets/btn-circle.png" alt="Submit" class="circle-bg">
+            <img src="assets/btn-arrow.png" alt="Arrow" class="circle-arrow">
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN 3: RESULTS -->
+    <section id="screen-results" class="screen hidden">
+      <div class="content results-content">
+        <img src="assets/welcome-card.png" alt="ADCB Welcome Graphic" class="result-top-image">
+        <h1 class="result-title">The Essentials Cashback Credit Card<br>fits your lifestyle the best.</h1>
+        <img src="assets/credit-card.png" alt="Essentials Cashback Credit Card" class="result-card-image">
+        <img src="assets/qr-code.png" alt="Apply via QR Code" class="qr-image">
+        <p class="qr-subtitle">Scan the QR code<br>to apply and unlock<br>your rewards.</p>
+      </div>
+      <div class="actions">
+        <button id="btn-restart" class="secondary-btn">Start Over</button>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
